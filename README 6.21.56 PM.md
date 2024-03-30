@@ -3,6 +3,13 @@
 ## Description
 👋 Developing virtual whiteboard utilizing hand gestures for educators and students for remote teaching.
 
+<p align="center">
+<img src="./demo.png" width="50%">
+</p>
+<p align="center">
+Demo of Project
+</p>
+
 ## Demo
 https://youtu.be/mmD74B2AR5g
 
@@ -19,8 +26,4 @@ https://youtu.be/mmD74B2AR5g
 - Alan Grissette (hsalley@bu.edu)
 
 ## Resources
-<<<<<<< HEAD
-https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-=======
-https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
->>>>>>> 9236933957797a4bf288b2c2f203eda3657fa0bb
+[kinivi - Hand Gesture Recognition](https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main)
