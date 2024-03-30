@@ -143,7 +143,13 @@ def main():
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                 if hand_sign_id == 2:  # Point gesture
                     point_history.append(landmark_list[8])
-                if hand_sign_id == 3:
+                if hand_sign_id == 0:
+                    x, y = landmark_list[8]
+                    for i in range(x - 10, x + 10):
+                        for j in range(y - 10, y + 10):
+                            if [i, j] in point_history:
+                                point_history.remove([i, j])
+                if hand_sign_id == 3: # OK
                     point_history.clear()
                 else:
                     point_history.append([0, 0])
