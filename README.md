@@ -1,4 +1,4 @@
-# GestureGenius
+# **GestureGenius**
 
 ## Description
 👋 Developing virtual whiteboard utilizing hand gestures for educators and students for remote teaching.
