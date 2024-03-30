@@ -1,7 +1,7 @@
 # Hack Innovat3
 
 ## Description
-Developing virtual whiteboard utilizing hand gestures for educators and students for remote teaching.
+Developing virtual whiteboard utilizing hand gestures for educators and students for remote teaching. 👋
 
 ## Contributors
 - Richard Liu (ruicliu@bu.edu)
