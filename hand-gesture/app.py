@@ -90,7 +90,9 @@ def main():
 
     # Coordinate history #################################################################
     history_length = 16
-    point_history = deque()
+    point_history = deque(maxlen=history_length)
+    
+    path_history = deque()
 
     # Finger gesture history ################################################
     finger_gesture_history = deque(maxlen=history_length)
@@ -143,14 +145,15 @@ def main():
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                 if hand_sign_id == 2:  # Point gesture
                     point_history.append(landmark_list[8])
+                    path_history.append(landmark_list[8])
                 if hand_sign_id == 0:
                     x, y = landmark_list[8]
-                    for i in range(x - 10, x + 10):
-                        for j in range(y - 10, y + 10):
-                            if [i, j] in point_history:
-                                point_history.remove([i, j])
+                    for i in range(x - 20, x + 20):
+                        for j in range(y - 20, y + 20):
+                            if [i, j] in path_history:
+                                path_history.remove([i, j])
                 if hand_sign_id == 3: # OK
-                    point_history.clear()
+                    path_history.clear()
                 else:
                     point_history.append([0, 0])
 
@@ -179,7 +182,7 @@ def main():
         else:
             point_history.append([0, 0])
 
-        debug_image = draw_point_history(debug_image, point_history)
+        debug_image = draw_point_history(debug_image, path_history)
         debug_image = draw_info(debug_image, fps, mode, number)
 
         # Screen reflection #############################################################
@@ -536,7 +539,7 @@ def draw_point_history(image, point_history):
             #           (152, 251, 152), 2)
             if index > 1:
                 # Make sure disjoint points are not connected
-                if abs(point[0] - currx) < 20 and abs(point[1] - curry) < 20:
+                if abs(point[0] - currx) < 50 and abs(point[1] - curry) < 50:
                     cv.line(image, (currx, curry),
                             (point[0], point[1]), (152, 251, 152), 2)
             currx, curry = point[0], point[1]
