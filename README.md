@@ -4,7 +4,7 @@
 👋 Developing virtual whiteboard utilizing hand gestures for educators and students for remote teaching.
 
 <p align="center">
-<img src="./images/demo.png" width="50%">
+<img src="./images/demo.png" width="70%">
 </p>
 <p align="center">
 Demo of Project
