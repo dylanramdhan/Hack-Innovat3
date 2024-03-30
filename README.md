@@ -6,6 +6,9 @@
 ## Demo
 https://youtu.be/mmD74B2AR5g
 
+## Devpost
+https://devpost.com/software/gesturegenius
+
 ## Contributors
 - Richard Liu (ruicliu@bu.edu)
 - Dylan Ramdhan (dylram01@bu.edu)
