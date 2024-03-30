@@ -19,7 +19,7 @@ from model import PointHistoryClassifier
 def get_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--device", type=int, default=1)
+    parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--width", help='cap width', type=int, default=960)
     parser.add_argument("--height", help='cap height', type=int, default=540)
 
@@ -143,7 +143,13 @@ def main():
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                 if hand_sign_id == 2:  # Point gesture
                     point_history.append(landmark_list[8])
-                if hand_sign_id == 3:
+                if hand_sign_id == 0:
+                    x, y = landmark_list[8]
+                    for i in range(x - 10, x + 10):
+                        for j in range(y - 10, y + 10):
+                            if [i, j] in point_history:
+                                point_history.remove([i, j])
+                if hand_sign_id == 3: # OK
                     point_history.clear()
                 else:
                     point_history.append([0, 0])
@@ -514,11 +520,26 @@ def draw_info_text(image, brect, handedness, hand_sign_text,
     return image
 
 
+# def draw_point_history(image, point_history):
+#     for index, point in enumerate(point_history):
+#         if point[0] != 0 and point[1] != 0:
+#             cv.circle(image, (point[0], point[1]), 4,
+#                       (152, 251, 152), 2)
+
+#     return image
+
 def draw_point_history(image, point_history):
+    currx, curry = 0, 0
     for index, point in enumerate(point_history):
         if point[0] != 0 and point[1] != 0:
-            cv.circle(image, (point[0], point[1]), 4,
-                      (152, 251, 152), 2)
+            # cv.circle(image, (point[0], point[1]), 4,
+            #           (152, 251, 152), 2)
+            if index > 1:
+                # Make sure disjoint points are not connected
+                if abs(point[0] - currx) < 20 and abs(point[1] - curry) < 20:
+                    cv.line(image, (currx, curry),
+                            (point[0], point[1]), (152, 251, 152), 2)
+            currx, curry = point[0], point[1]
 
     return image
 
