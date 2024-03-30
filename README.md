@@ -5,7 +5,6 @@
 
 <p align="center">
 <img src="./images/demo.png" width="70%">
-</p>
 <p align="center">
 Demo of Project
 </p>
