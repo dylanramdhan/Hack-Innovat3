@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# Runing the Program
+#   - make sure environment is activated in PYTHON 3.8.10!!
+#   - run the following command in the terminal:
+#       'python app.py'  OR './app.py'
+# To exit the program, press 'control ^' & 'C' key together
+
 import csv
 import copy
 import argparse
@@ -39,6 +46,7 @@ def get_args():
 
 
 def main():
+
     # Argument parsing #################################################################
     args = get_args()
 
@@ -52,10 +60,13 @@ def main():
 
     use_brect = True
 
+
     # Camera preparation ###############################################################
     cap = cv.VideoCapture(cap_device)
     cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+
+
 
     # Model load #############################################################
     mp_hands = mp.solutions.hands
@@ -69,6 +80,8 @@ def main():
     keypoint_classifier = KeyPointClassifier()
 
     point_history_classifier = PointHistoryClassifier()
+
+
 
     # Read labels ###########################################################
     with open('model/keypoint_classifier/keypoint_classifier_label.csv',
@@ -88,11 +101,13 @@ def main():
     # FPS Measurement ########################################################
     cvFpsCalc = CvFpsCalc(buffer_len=10)
 
+
     # Coordinate history #################################################################
     history_length = 16
     point_history = deque(maxlen=history_length)
     
     path_history = deque()
+
 
     # Finger gesture history ################################################
     finger_gesture_history = deque(maxlen=history_length)
